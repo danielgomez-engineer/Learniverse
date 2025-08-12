@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/base}"
+      lang="es">
+
+<main layout:fragment="content" class="space-y-16">
+
+    <!-- Hero -->
+    <section class="grid md:grid-cols-2 gap-8 items-center">
+        <div class="flex justify-center">
+            <!-- Aquí imagen -->
+            <img th:src="@{img/programacion.png}" alt="Aprender programación"
+                 class="rounded-lg shadow-md object-cover">
+        </div>
+        <div class="space-y-4">
+            <h2 class="text-3xl font-bold text-gray-800 leading-tight">Domina la programación, sección por sección</h2>
+            <p class="text-lg text-gray-600">Explicaciones simples. Videos cortos. Conceptos que perduran.</p>
+            <div class="flex flex-wrap gap-4">
+                <a th:href="@{/topic_details}"
+                   class="px-5 py-3 bg-indigo-600 text-white rounded-md shadow hover:bg-indigo-500 transition">
+                    Ver Temas
+                </a>
+                <a th:href="@{/login}"
+                   class="px-5 py-3 bg-yellow-400 text-gray-900 font-semibold rounded-md shadow hover:bg-yellow-300 transition">
+                    Comenzar Ahora
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Qué es Learniverse -->
+    <section class="bg-white rounded-lg shadow p-8">
+        <h2 class="text-2xl font-bold text-gray-800 mb-4">¿Qué es Learniverse?</h2>
+        <p class="text-gray-600 mb-6">
+            Learniverse es una plataforma de aprendizaje técnico diseñada para estudiantes autodidactas,
+            desarrolladores curiosos y profesionales que desean repasar conceptos clave de programación a su ritmo.
+        </p>
+        <ul class="grid sm:grid-cols-2 gap-3 text-gray-700">
+            <li>✔️ Explicaciones cortas y concisas</li>
+            <li>✔️ Videos cortos por sección</li>
+            <li>✔️ Continuidad paso a paso</li>
+            <li>✔️ Acceso rápido a temas específicos</li>
+            <li>✔️ Gratis y siempre en evolución</li>
+        </ul>
+    </section>
+
+    <!-- Cómo funciona -->
+    <section class="grid md:grid-cols-2 gap-8 items-center">
+        <div class="flex justify-center">
+            <!-- Imagen/Infografía -->
+            <img th:src="@{/img/formato.png}" alt="Estructura Learniverse"
+                 class="rounded-lg shadow-md object-cover">
+        </div>
+        <div>
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">Cómo funciona</h2>
+            <p class="text-gray-600">
+                Desde los fundamentos hasta temas avanzados, cada sección está diseñada para que aprendas lo que necesitas,
+                sin perder tiempo.
+            </p>
+            <pre class="bg-gray-100 p-4 rounded mt-4 text-sm text-gray-700">
+Temas
+ └── Subtemas
+       └── Contenidos
+             └── Secciones (con video)
+            </pre>
+        </div>
+    </section>
+
+    <!-- Sobre Learniverse -->
+    <section class="bg-indigo-50 rounded-lg p-8">
+        <h2 class="text-2xl font-bold text-gray-800 mb-4">Sobre Learniverse</h2>
+        <p class="text-gray-700">
+            Learniverse nació como un proyecto personal de Daniel, Ingeniero de Sistemas y desarrollador
+            de software apasionado por aprender más y buscar las mejores maneras de hacerlo.
+            Esta es una plataforma en constante crecimiento, abierta para cualquier persona
+            que quiera reforzar temas de programación.
+        </p>
+    </section>
+
+    <!-- Para quién es -->
+    <section>
+        <h2 class="text-2xl font-bold text-gray-800 mb-6">¿Para quién es?</h2>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="bg-white rounded-lg shadow p-4 text-center transform transition duration-300 hover:scale-105 hover:shadow-lg">
+                👶 <p class="mt-2 font-semibold">Principiantes en programación</p>
+            </div>
+            <div class="bg-white rounded-lg shadow p-4 text-center transform transition duration-300 hover:scale-105 hover:shadow-lg">
+                🧠 <p class="mt-2 font-semibold">Estudiantes que quieren repasar conceptos</p>
+            </div>
+            <div class="bg-white rounded-lg shadow p-4 text-center transform transition duration-300 hover:scale-105 hover:shadow-lg">
+                ⏱️ <p class="mt-2 font-semibold">Desarrolladores sin tiempo para cursos largos</p>
+            </div>
+            <div class="bg-white rounded-lg shadow p-4 text-center transform transition duration-300 hover:scale-105 hover:shadow-lg">
+                🧑‍🏫 <p class="mt-2 font-semibold">Profesores que enseñan de forma modular</p>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Testimonios -->
+    <section class="bg-white rounded-lg shadow p-8">
+        <h2 class="text-2xl font-bold text-gray-800 mb-4">Testimonios</h2>
+        <p class="text-gray-600">✨ Próximamente: comentarios reales de usuarios de Learniverse.</p>
+    </section>
+
+    <!-- Llamado a la acción -->
+    <section class="text-center bg-indigo-600 text-white rounded-lg p-8">
+        <h2 class="text-3xl font-bold mb-4">¿Listo para aprender a tu ritmo?</h2>
+        <div class="flex justify-center gap-4">
+            <a th:href="@{/topic_details}" class="px-6 py-3 bg-white text-indigo-600 font-semibold rounded-md shadow hover:bg-gray-100 transition">
+                Ver Temas
+            </a>
+            <a th:href="@{/register}" class="px-6 py-3 bg-yellow-400 text-gray-900 font-semibold rounded-md shadow hover:bg-yellow-300 transition">
+                📝 Registrarse
+            </a>
+        </div>
+    </section>
+
+</main>
+</html>

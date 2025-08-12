@@ -1,0 +1,18 @@
+<div th:fragment="navbar" class="bg-indigo-600 text-white shadow-md">
+    <div class="container mx-auto flex flex-wrap items-center justify-between px-4 py-2">
+        <div  class="flex flex-wrap gap-4">
+            <a th:href="@{/}" class="hover:bg-indigo-500 px-3 py-2 rounded-md transition">Inicio</a>
+            <a th:href="@{/topic_details}" class="hover:bg-indigo-500 px-3 py-2 rounded-md transition">Temas</a>
+            <a th:href="@{/}" class="hover:bg-indigo-500 px-3 py-2 rounded-md transition">Subtemas</a>
+            <a th:href="@{/}" class="hover:bg-indigo-500 px-3 py-2 rounded-md transition">Contenidos</a>
+            <a th:href="@{/}" class="hover:bg-indigo-500 px-3 py-2 rounded-md transition">Buscar</a>
+            <a th:href="@{/}" class="hover:bg-indigo-500 px-3 py-2 rounded-md transition">Iniciar sesion</a>
+            <a th:href="@{/}" class="hover:bg-indigo-500 px-3 py-2 rounded-md transition">Registrarse</a>
+        </div>
+
+        <div class="bg-yellow-400 text-gray-900 font-semibold px-3 py-2 rounded-md hover:bg-yellow-300 transition">
+            <a th:href="@{/manage}">Gestion de recursos</a>
+        </div>
+    </div>
+
+</div>

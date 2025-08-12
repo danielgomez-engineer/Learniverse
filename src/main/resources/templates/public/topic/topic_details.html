@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/base}" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Temas</title>
+</head>
+<body>
+<main layout:fragment="content" class="max-w-5xl mx-auto space-y-6">
+
+    <h1 class="text-3xl font-bold text-gray-800">Temas</h1>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div th:each="topic: ${topics}"
+             class="bg-white rounded-lg shadow p-6 flex flex-col justify-between hover:shadow-lg transform transition duration-300 hover:scale-105">
+            <div>
+                <h3 th:text="${topic.title}" class="text-xl font-semibold text-gray-800"></h3>
+                <p th:text="${topic.description}" class="text-gray-600 mt-2"></p>
+            </div>
+            <div class="mt-4">
+                <a th:href="@{/}" class="inline-block px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-500 transition">
+                    Ver Subtemas
+                </a>
+            </div>
+        </div>
+    </div>
+
+</main>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Learniverse</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Fuente moderna -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body class="bg-gray-50 text-gray-800 font-[Inter] flex flex-col min-h-screen">
+
+<header>   <!-- Header -->
+    <div th:replace="layout/header :: header"></div>
+</header>
+
+<nav><!-- Navbar -->
+    <div th:replace="layout/navbar :: navbar"></div>
+</nav>
+
+
+<!-- Contenido -->
+<main class="flex-1 container mx-auto px-4 py-6" layout:fragment="content"></main>
+
+<footer th:replace="layout/footer :: footer"></footer>
+</body>
+</html>

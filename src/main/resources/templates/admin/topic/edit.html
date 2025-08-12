@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/base}" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Tema</title>
+</head>
+<body>
+<main layout:fragment="content" class="max-w-2xl mx-auto bg-white p-8 rounded-lg shadow space-y-6">
+
+    <h2 class="text-2xl font-bold text-gray-800">Editar Tema</h2>
+
+    <form th:action="@{'/topic/edit/' + ${topic.id}}" th:object="${topic}" method="post" class="space-y-4">
+        <input type="hidden" th:field="*{id}"/>
+
+        <div>
+            <label for="title" class="block font-medium text-gray-700">Título</label>
+            <input type="text" id="title" th:field="*{title}"
+                   class="mt-1 block w-full border border-gray-300 rounded-md p-2 focus:border-indigo-500 focus:ring focus:ring-indigo-200" />
+            <p class="text-red-500 text-sm mt-1" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></p>
+        </div>
+
+        <div>
+            <label for="description" class="block font-medium text-gray-700">Descripción</label>
+            <input type="text" id="description" th:field="*{description}"
+                   class="mt-1 block w-full border border-gray-300 rounded-md p-2 focus:border-indigo-500 focus:ring focus:ring-indigo-200" />
+            <p class="text-red-500 text-sm mt-1" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></p>
+        </div>
+
+        <div class="flex gap-4">
+            <button type="submit" class="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-500 transition">
+                Guardar
+            </button>
+            <a th:href="@{/manage}" class="px-4 py-2 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300 transition">
+                Cancelar
+            </a>
+        </div>
+    </form>
+
+</main>
+</body>
+</html>
