@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/base}">
+<head>
+    <meta charset="UTF-8">
+    <title>Administrador Subtemas</title>
+</head>
+<body>
+<main layout:fragment="content" class="max-w-6xl mx-auto px-4 py-8">
+    <h2 class="text-3xl font-bold text-gray-800 mb-6">Administrar Subtemas</h2>
+
+    <div th:if="@{successMessage}"
+         class="bg-green-100 border border-green-300 text-green-800 px-4 py-3 rounded mb-6">
+        <p th:text="${successMessage}"></p>
+    </div>
+
+<!--  Administracion de subtemas  -->
+<!-- Crear subtema, me lleva al metodo del AdminSubtopicController y este me redirije al form para crear   -->
+    <div class="mb-6">
+        <a th:href="@{/subtopic/new}"
+        class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded shadow">
+            ➕ Crear nuevo Subtema
+        </a>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div th:each="subtopic : ${subtopics}"
+             class="bg-white rounded-lg shadow p-4 flex flex-col justify-between hover:shadow-lg transition-shadow">
+            <div>
+                <h3 class="text-xl font-semibold text-gray-800" th:text="${subtopic.title}"></h3>
+                <p class="text-gray-600 mt-2" th:text="${subtopic.description}"></p>
+            </div>
+            <div class="flex gap-2 mt-4">
+                <a th:href="@{'/subtopics/edit/' + ${subtopic.id}}"
+                   class="bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-1 rounded">✏ Editar</a>
+                <a th:href="@{'/subtopics/delete/' + ${subtopic.id}}"
+                   class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded">🗑 Eliminar</a>
+            </div>
+        </div>
+
+    </div>
+
+</main>
+</body>
+</html>

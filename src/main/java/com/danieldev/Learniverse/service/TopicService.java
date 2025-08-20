@@ -1,7 +1,8 @@
 package com.danieldev.Learniverse.service;
 
-import com.danieldev.Learniverse.dto.TopicRequest;
-import com.danieldev.Learniverse.dto.TopicResponse;
+import com.danieldev.Learniverse.dto.request.TopicRequest;
+import com.danieldev.Learniverse.dto.response.SubtopicResponse;
+import com.danieldev.Learniverse.dto.response.TopicResponse;
 
 import java.util.List;
 
@@ -16,4 +17,6 @@ public interface TopicService {
     TopicResponse updateTopic (TopicRequest request, Long id);
 
     void deleteTopic (Long id);
+
+
 }

@@ -1,7 +1,7 @@
 package com.danieldev.Learniverse.controller.admin;
 
-import com.danieldev.Learniverse.dto.TopicRequest;
-import com.danieldev.Learniverse.dto.TopicResponse;
+import com.danieldev.Learniverse.dto.request.TopicRequest;
+import com.danieldev.Learniverse.dto.response.TopicResponse;
 import com.danieldev.Learniverse.service.TopicService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -14,41 +14,48 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.List;
+
 @Controller
 @RequiredArgsConstructor
 public class AdminTopicController {
 
     private final TopicService topicService;
 
-    @GetMapping("/manage") // mostrar manage donde se gestionan los eventos
-    public String showManageResource(Model model) {
+    @GetMapping("/manage") // mostrar manage donde se gestionan los recursos
+    public String showManageResource() {
 
-        model.addAttribute("topics", topicService.findAllTopics());
         return "admin/manage";
     }
 
+    //administrador de temas
+    @GetMapping("/admin_topics")
+    public String viewAdminTopics(Model model) {
+        List<TopicResponse> topics = topicService.findAllTopics();
+        model.addAttribute("topics", topics);
+        return "admin/topics/admin_topics";
+    }
 
-    @GetMapping("/topic/new")// de manage nos muestra el form de crear tema
+    @GetMapping("/topics/new")// de manage nos muestra el form de crear tema
     public String showFormCreate(Model model) {
         model.addAttribute("topic", new TopicRequest());
-        return "admin/topic/create";
+        return "admin/topics/create";
     }
 
     @PostMapping("/topics") //guardar el tema
     public String saveTopic(@Valid @ModelAttribute("topic") TopicRequest request,
                             BindingResult result, Model model) {
 
-
         if (result.hasErrors()) {
             model.addAttribute("errors", result.getAllErrors());
-            return "admin/topic/create";
+            return "admin/topics/create";
         }
         topicService.createTopic(request);
-        return "redirect:/manage";
+        return "redirect:/admin_topics";
     }
 
-    //formulario para  mostrar editar tema
-    @GetMapping("/topic/edit/{id}")
+    //*******FORMULARIO PARA MOSTRAR EDITAR TEMA********************
+    @GetMapping("/topics/edit/{id}")
     public String showFormEdit(Model model, @PathVariable Long id) {
 
         TopicResponse response = topicService.findTopicById(id);
@@ -59,23 +66,22 @@ public class AdminTopicController {
         request.setDescription(response.getDescription());
 
         model.addAttribute("topic", request);
-        return "admin/topic/edit";
+        return "admin/topics/edit";
 
     }
 
-    //guardar tema en la base de datos
-
-    @PostMapping("/topic/edit/{id}")
-    public String uopdateTopic(@PathVariable Long id,
+    //*******FORMULARIO PARA GUARDAR TEMA EN LA BASE DE DATOS********************
+    @PostMapping("/topics/edit/{id}")
+    public String updateTopic(@PathVariable Long id,
                                @Valid @ModelAttribute("topic") TopicRequest request,
                                BindingResult result) {
 
         if (result.hasErrors()) {
-            return "admin/topic/edit";
+            return "admin/topics/edit";
         }
         request.setId(id);
         topicService.updateTopic(request, id);
-        return "redirect:/manage";
+        return "redirect:/admin_topics";
     }
 
     @GetMapping("/topics/delete/{id}")
@@ -84,17 +90,17 @@ public class AdminTopicController {
         if (response == null) {
             // Si no existe el tema, redirigir con error
             model.addAttribute("message", "El tema no existe o ya fue eliminado.");
-            return "error"; // O tu vista de error personalizada
+            return "error/404"; // O tu vista de error personalizada
         }
         model.addAttribute("topic", response);
-        return "admin/topic/delete-confirm"; // Nombre de tu HTML de confirmación
+        return "admin/topics/delete-confirm"; // Nombre de tu HTML de confirmación
     }
 
     @PostMapping("/topics/delete/{id}")
     public String deleteTopic(@PathVariable Long id, RedirectAttributes redirectAttributes) {
         topicService.deleteTopic(id);
         redirectAttributes.addFlashAttribute("successMessage", "Tema eliminado correctamente");
-        return "redirect:/manage";
+        return "redirect:/admin_topics";
     }
 
 }

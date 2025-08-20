@@ -1,4 +1,4 @@
-package com.danieldev.Learniverse.dto;
+package com.danieldev.Learniverse.dto.response;
 
 import com.danieldev.Learniverse.model.Subtopic;
 import lombok.AllArgsConstructor;

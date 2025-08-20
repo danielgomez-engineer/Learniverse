@@ -1,8 +1,10 @@
 package com.danieldev.Learniverse.impl;
 
-import com.danieldev.Learniverse.dto.TopicRequest;
-import com.danieldev.Learniverse.dto.TopicResponse;
+import com.danieldev.Learniverse.dto.request.TopicRequest;
+import com.danieldev.Learniverse.dto.response.SubtopicResponse;
+import com.danieldev.Learniverse.dto.response.TopicResponse;
 import com.danieldev.Learniverse.exception.ResourceNotFoundException;
+import com.danieldev.Learniverse.model.Subtopic;
 import com.danieldev.Learniverse.model.Topic;
 import com.danieldev.Learniverse.repository.TopicRepository;
 import com.danieldev.Learniverse.service.TopicService;
@@ -68,5 +70,7 @@ public class TopicServiceImpl implements TopicService {
         repository.deleteById(id);
 
     }
+
+
 
 }

@@ -1,43 +1,54 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{layout/base}">
-<head>
-    <meta charset="UTF-8">
-    <title>Administrador</title>
-</head>
-<body>
-<main layout:fragment="content" class="max-w-6xl mx-auto px-4 py-8">
-    <h2 class="text-3xl font-bold text-gray-800 mb-6">Administrar recursos</h2>
+      layout:decorate="~{layout/base}"
+      lang="es">
 
-    <div th:if="${successMessage}"
-         class="bg-green-100 border border-green-300 text-green-800 px-4 py-3 rounded mb-6">
-        <p th:text="${successMessage}"></p>
+<main layout:fragment="content" class="max-w-6xl mx-auto px-4 py-10 space-y-8">
+
+    <!-- Título principal -->
+    <div class="text-center">
+        <h1 class="text-4xl font-bold text-gray-800">Panel de Administración</h1>
+        <p class="text-gray-500 mt-2">Gestiona el contenido y estructura de Learniverse</p>
     </div>
 
-    <div class="mb-6">
-        <a th:href="@{/topic/new}"
-           class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded shadow">
-            ➕ Crear nuevo Tema
-        </a>
-    </div>
+    <!-- Grid de opciones -->
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
 
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <div th:each="topic : ${topics}"
-             class="bg-white rounded-lg shadow p-4 flex flex-col justify-between hover:shadow-lg transition-shadow">
-            <div>
-                <h3 class="text-xl font-semibold text-gray-800" th:text="${topic.title}"></h3>
-                <p class="text-gray-600 mt-2" th:text="${topic.description}"></p>
-            </div>
-            <div class="flex gap-2 mt-4">
-                <a th:href="@{'/topic/edit/' + ${topic.id}}"
-                   class="bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-1 rounded">✏ Editar</a>
-                <a th:href="@{'/topics/delete/' + ${topic.id}}"
-                   class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded">🗑 Eliminar</a>
-            </div>
+        <!-- Card: Administrar Temas -->
+        <div class="bg-white shadow-md rounded-lg p-6 flex flex-col items-center text-center">
+            <div class="text-indigo-600 text-5xl mb-4">📚</div>
+            <h2 class="text-xl font-semibold text-gray-800 mb-2">Administrar Temas</h2>
+            <p class="text-gray-500 mb-4">Crea, edita o elimina temas principales.</p>
+            <a th:href="@{/admin_topics}"
+               class="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-500 transition w-full">
+                Ir a Temas
+            </a>
         </div>
-    </div>
-</main>
 
-</body>
+        <!-- Card: Administrar Subtemas -->
+        <div class="bg-white shadow-md rounded-lg p-6 flex flex-col items-center text-center">
+            <div class="text-green-600 text-5xl mb-4">🗂️</div>
+            <h2 class="text-xl font-semibold text-gray-800 mb-2">Administrar Subtemas</h2>
+            <p class="text-gray-500 mb-4">Organiza y gestiona subtemas asociados a los temas.</p>
+            <a th:href="@{/admin_subtopics}"
+               class="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-500 transition w-full">
+                Ir a Subtemas
+            </a>
+        </div>
+
+        <!-- Ejemplo de futura opción -->
+        <div class="bg-white shadow-md rounded-lg p-6 flex flex-col items-center text-center">
+            <div class="text-yellow-500 text-5xl mb-4">📝</div>
+            <h2 class="text-xl font-semibold text-gray-800 mb-2">Administrar Contenidos</h2>
+            <p class="text-gray-500 mb-4">Edita y organiza el contenido de cada subtema.</p>
+            <a th:href="@{/admin_contents}"
+               class="px-4 py-2 bg-yellow-500 text-white rounded-md hover:bg-yellow-400 transition w-full">
+                Ir a Contenidos
+            </a>
+        </div>
+
+    </div>
+
+</main>
 </html>

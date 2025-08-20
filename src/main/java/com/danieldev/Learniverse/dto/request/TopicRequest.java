@@ -1,4 +1,4 @@
-package com.danieldev.Learniverse.dto;
+package com.danieldev.Learniverse.dto.request;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
