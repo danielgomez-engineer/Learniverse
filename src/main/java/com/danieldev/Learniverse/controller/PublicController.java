@@ -1,7 +1,9 @@
 package com.danieldev.Learniverse.controller;
 
+import com.danieldev.Learniverse.dto.response.ContentResponse;
 import com.danieldev.Learniverse.dto.response.SubtopicResponse;
 import com.danieldev.Learniverse.dto.response.TopicResponse;
+import com.danieldev.Learniverse.service.ContentService;
 import com.danieldev.Learniverse.service.SubtopicService;
 import com.danieldev.Learniverse.service.TopicService;
 import lombok.RequiredArgsConstructor;
@@ -18,6 +20,7 @@ public class PublicController {
 
     private final TopicService topicService;
     private final SubtopicService subtopicService;
+    private final ContentService contentService;
 
     @GetMapping("topic_details") // detalles de temas
     public String showTopic_details(Model model) { // me lleva a la lista de temas pulic/topic_details
@@ -44,6 +47,29 @@ public class PublicController {
 
         return "public/subtopic/subtopic_details";
     }
+
+    ///  DETALLES DE CONTENIDOS
+    @GetMapping("content_details")
+    public String viewContentDetails(Model model) {
+        List<ContentResponse> contents = contentService.findAll();
+        model.addAttribute("contents", contents);
+        return "public/content/content_details";
+    }
+
+    /// MOSTRAR CONTENIDOS DE UN SUBTEMA
+
+    @GetMapping("/subtopics/{subtopicId}/contents")
+    public String viewContentsBySubtopic(@PathVariable Long subtopicId, Model model) {
+        SubtopicResponse subtopic = subtopicService.findByIdSubtopic(subtopicId);
+        List<ContentResponse> contents = contentService.findBySubtopicId(subtopicId);
+
+        model.addAttribute("subtopic", subtopic);
+        model.addAttribute("contents", contents);
+
+        return "public/content/content_details";
+    }
+
+
 
 
 

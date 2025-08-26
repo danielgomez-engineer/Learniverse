@@ -18,8 +18,8 @@
                 <h3 th:text="${subtopic.title}" class="text-xl font-semibold text-gray-800"></h3>
                 <p th:text="${subtopic.description}" class="text-gray-600 mt-2"></p>
             </div>
-            <div class="mt-4">
-                <a th:href="@{/}" class="inline-block px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-500 transition">
+            <div class="mt-auto pt-4">
+                <a th:href="@{/subtopics/{id}/contents(id=${subtopic.id})}" class="inline-block px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-500 transition">
                     Ver Contenidos
                 </a>
             </div>

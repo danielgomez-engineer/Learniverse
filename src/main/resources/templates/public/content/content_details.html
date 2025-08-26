@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+                xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+                layout:decorate="~{layout/base}">
+<head>
+    <meta charset="UTF-8">
+    <title>Contenidos</title>
+</head>
+<body>
+<main layout:fragment="content" class="max-w-5x1 mx-auto space-y-6">
+
+    <h1 class="text-3xl font-bold text-gray-800">Contenidos</h1>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div th:each="content: ${contents}"
+        class="bg-white rounded-lg shadow p-6 flex flex-col justify-between hover:shadow-lg transform transition duration-300 hover:scale-105">
+            <h3 th:text="${content.title}" class="text-xl font-semibold text-gray-800"></h3>
+            <p th:text="${content.description}"></p>
+        </div>
+        <div class="mt-4">
+            <a th:href="@{/}" class="inline-block px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-500 transition">
+                Ver Secciones
+            </a>
+        </div>
+    </div>
+</main>
+</body>
+</html>
