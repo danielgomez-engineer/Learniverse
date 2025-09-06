@@ -1,20 +1,22 @@
 package com.danieldev.Learniverse.dto.response;
 
-import com.danieldev.Learniverse.model.Section;
+
+import com.danieldev.Learniverse.model.Language;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ContentResponse {
+public class SectionResponse {
 
     private Long id;
     private String title;
     private String description;
-    private List<SectionResponse> sections;
-    private Long idSubtopic;
+    private int orderIndex;
+    private String code;
+    private Language language;
+    private String urlVideo;
+    private Long idContent;
 }

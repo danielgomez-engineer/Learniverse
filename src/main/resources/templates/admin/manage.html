@@ -4,47 +4,58 @@
       layout:decorate="~{layout/base}"
       lang="es">
 
-<main layout:fragment="content" class="max-w-6xl mx-auto px-4 py-10 space-y-8">
+<main layout:fragment="content" class="max-w-6xl mx-auto px-4 py-12 space-y-10">
 
-    <!-- Título principal -->
-    <div class="text-center">
-        <h1 class="text-4xl font-bold text-gray-800">Panel de Administración</h1>
-        <p class="text-gray-500 mt-2">Gestiona el contenido y estructura de Learniverse</p>
+    <!-- Encabezado -->
+    <div class="text-center space-y-2">
+        <h1 class="text-4xl font-extrabold text-gray-900">⚙️ Panel de Administración</h1>
+        <p class="text-gray-600">Gestiona el contenido y estructura de <span class="font-semibold">Learniverse</span></p>
     </div>
 
     <!-- Grid de opciones -->
-    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
 
         <!-- Card: Administrar Temas -->
-        <div class="bg-white shadow-md rounded-lg p-6 flex flex-col items-center text-center">
-            <div class="text-indigo-600 text-5xl mb-4">📚</div>
-            <h2 class="text-xl font-semibold text-gray-800 mb-2">Administrar Temas</h2>
-            <p class="text-gray-500 mb-4">Crea, edita o elimina temas principales.</p>
+        <div class="bg-white shadow-md rounded-2xl p-6 flex flex-col items-center text-center hover:shadow-lg hover:scale-105 transition transform">
+            <div class="text-indigo-600 text-6xl mb-4">📚</div>
+            <h2 class="text-xl font-semibold text-gray-800">Administrar Temas</h2>
+            <p class="text-gray-500 mt-2 mb-6">Crea, edita o elimina temas principales.</p>
             <a th:href="@{/admin_topics}"
-               class="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-500 transition w-full">
+               class="w-full px-5 py-3 bg-indigo-600 text-white rounded-md font-medium hover:bg-indigo-500 transition">
                 Ir a Temas
             </a>
         </div>
 
         <!-- Card: Administrar Subtemas -->
-        <div class="bg-white shadow-md rounded-lg p-6 flex flex-col items-center text-center">
-            <div class="text-green-600 text-5xl mb-4">🗂️</div>
-            <h2 class="text-xl font-semibold text-gray-800 mb-2">Administrar Subtemas</h2>
-            <p class="text-gray-500 mb-4">Organiza y gestiona subtemas asociados a los temas.</p>
+        <div class="bg-white shadow-md rounded-2xl p-6 flex flex-col items-center text-center hover:shadow-lg hover:scale-105 transition transform">
+            <div class="text-green-600 text-6xl mb-4">🗂️</div>
+            <h2 class="text-xl font-semibold text-gray-800">Administrar Subtemas</h2>
+            <p class="text-gray-500 mt-2 mb-6">Organiza y gestiona subtemas asociados a los temas.</p>
             <a th:href="@{/admin_subtopics}"
-               class="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-500 transition w-full">
+               class="w-full px-5 py-3 bg-green-600 text-white rounded-md font-medium hover:bg-green-500 transition">
                 Ir a Subtemas
             </a>
         </div>
 
-        <!-- Ejemplo de futura opción -->
-        <div class="bg-white shadow-md rounded-lg p-6 flex flex-col items-center text-center">
-            <div class="text-yellow-500 text-5xl mb-4">📝</div>
-            <h2 class="text-xl font-semibold text-gray-800 mb-2">Administrar Contenidos</h2>
-            <p class="text-gray-500 mb-4">Edita y organiza el contenido de cada subtema.</p>
+        <!-- Card: Administrar Contenidos -->
+        <div class="bg-white shadow-md rounded-2xl p-6 flex flex-col items-center text-center hover:shadow-lg hover:scale-105 transition transform">
+            <div class="text-yellow-500 text-6xl mb-4">📝</div>
+            <h2 class="text-xl font-semibold text-gray-800">Administrar Contenidos</h2>
+            <p class="text-gray-500 mt-2 mb-6">Edita y organiza el contenido de cada subtema.</p>
             <a th:href="@{/admin_contents}"
-               class="px-4 py-2 bg-yellow-500 text-white rounded-md hover:bg-yellow-400 transition w-full">
+               class="w-full px-5 py-3 bg-yellow-500 text-white rounded-md font-medium hover:bg-yellow-400 transition">
                 Ir a Contenidos
+            </a>
+        </div>
+
+        <!-- Card: Administrar Secciones -->
+        <div class="bg-white shadow-md rounded-2xl p-6 flex flex-col items-center text-center hover:shadow-lg hover:scale-105 transition transform">
+            <div class="text-purple-600 text-6xl mb-4">📑</div>
+            <h2 class="text-xl font-semibold text-gray-800">Administrar Secciones</h2>
+            <p class="text-gray-500 mt-2 mb-6">Gestiona las secciones de cada contenido.</p>
+            <a th:href="@{/admin_sections}"
+               class="w-full px-5 py-3 bg-purple-600 text-white rounded-md font-medium hover:bg-purple-500 transition">
+                Ir a Secciones
             </a>
         </div>
 

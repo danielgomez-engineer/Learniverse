@@ -7,34 +7,44 @@
     <title>Editar Tema</title>
 </head>
 <body>
-<main layout:fragment="content" class="max-w-2xl mx-auto bg-white p-8 rounded-lg shadow space-y-6">
+<main layout:fragment="content" class="max-w-2xl mx-auto bg-white p-8 rounded-2xl shadow-lg space-y-6">
 
-    <h2 class="text-2xl font-bold text-gray-800">Editar Tema</h2>
+    <!-- Encabezado -->
+    <div class="text-center space-y-2">
+        <h2 class="text-2xl font-bold text-gray-800">✏ Editar Tema</h2>
+        <p class="text-gray-500">Modifica los datos y guarda los cambios</p>
+    </div>
 
-    <form th:action="@{'/topics/edit/' + ${topic.id}}" th:object="${topic}" method="post" class="space-y-4">
+    <!-- Formulario -->
+    <form th:action="@{'/topics/edit/' + ${topic.id}}" th:object="${topic}" method="post" class="space-y-5">
         <input type="hidden" th:field="*{id}"/>
 
+        <!-- Campo Título -->
         <div>
             <label for="title" class="block font-medium text-gray-700">Título</label>
-            <input type="text" id="title" th:field="*{title}"
-                   class="mt-1 block w-full border border-gray-300 rounded-md p-2 focus:border-indigo-500 focus:ring focus:ring-indigo-200" />
+            <input type="text" id="title" th:field="*{title}" required
+                   class="mt-1 block w-full border border-gray-300 rounded-md p-3 focus:border-indigo-500 focus:ring focus:ring-indigo-200"/>
             <p class="text-red-500 text-sm mt-1" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></p>
         </div>
 
+        <!-- Campo Descripción -->
         <div>
             <label for="description" class="block font-medium text-gray-700">Descripción</label>
-            <input type="text" id="description" th:field="*{description}"
-                   class="mt-1 block w-full border border-gray-300 rounded-md p-2 focus:border-indigo-500 focus:ring focus:ring-indigo-200" />
+            <textarea id="description" th:field="*{description}" rows="4" required
+                      class="mt-1 block w-full border border-gray-300 rounded-md p-3 focus:border-indigo-500 focus:ring focus:ring-indigo-200 resize-y"></textarea>
             <p class="text-red-500 text-sm mt-1" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></p>
         </div>
 
-        <div class="flex gap-4">
-            <button type="submit" class="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-500 transition">
-                Guardar
-            </button>
-            <a th:href="@{/admin_topics}" class="px-4 py-2 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300 transition">
+        <!-- Botones -->
+        <div class="flex justify-end gap-4">
+            <a th:href="@{/admin_topics}"
+               class="px-5 py-2 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300 transition">
                 Cancelar
             </a>
+            <button type="submit"
+                    class="px-5 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-500 transition">
+                Guardar
+            </button>
         </div>
     </form>
 

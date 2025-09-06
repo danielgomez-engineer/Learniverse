@@ -4,42 +4,42 @@
       layout:decorate="~{layout/base}">
 <head>
     <meta charset="UTF-8">
-    <title>Administrador</title>
+    <title>Administrar Temas</title>
 </head>
 <body>
-<main layout:fragment="content" class="max-w-6xl mx-auto px-4 py-8">
-    <h2 class="text-3xl font-bold text-gray-800 mb-6">Administrar Temas</h2>
+<main layout:fragment="content" class="max-w-6xl mx-auto px-4 py-10 space-y-8">
 
-    <div th:if="${successMessage}"
-         class="bg-green-100 border border-green-300 text-green-800 px-4 py-3 rounded mb-6">
-        <p th:text="${successMessage}"></p>
-    </div>
-
-    <!--Administracion de temas-->
-    <div class="mb-6">
+    <!-- Encabezado -->
+    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <h2 class="text-3xl font-extrabold text-gray-800">📚 Administrar Temas</h2>
         <a th:href="@{/topics/new}"
-           class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded shadow">
+           class="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 rounded-md shadow transition">
             ➕ Crear nuevo Tema
         </a>
     </div>
 
+    <!-- Mensaje de éxito -->
+    <div th:if="${successMessage}"
+         class="bg-green-100 border border-green-300 text-green-800 px-4 py-3 rounded-md shadow">
+        <p th:text="${successMessage}"></p>
+    </div>
+
+    <!-- Grid de temas -->
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
         <div th:each="topic : ${topics}"
-             class="bg-white rounded-lg shadow p-4 flex flex-col justify-between hover:shadow-lg transition-shadow">
+             class="bg-white rounded-xl shadow-md p-5 flex flex-col justify-between hover:shadow-lg hover:scale-[1.02] transition">
             <div>
-                <h3 class="text-xl font-semibold text-gray-800" th:text="${topic.title}"></h3>
-                <p class="text-gray-600 mt-2" th:text="${topic.description}"></p>
+                <h3 class="text-xl font-semibold text-gray-900" th:text="${topic.title}"></h3>
+                <p class="text-gray-600 mt-2 line-clamp-3" th:text="${topic.description}"></p>
             </div>
             <div class="flex gap-2 mt-4">
                 <a th:href="@{'/topics/edit/' + ${topic.id}}"
-                   class="bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-1 rounded">✏ Editar</a>
+                   class="flex-1 text-center bg-yellow-500 hover:bg-yellow-400 text-white px-3 py-2 rounded-md transition">✏ Editar</a>
                 <a th:href="@{'/topics/delete/' + ${topic.id}}"
-                   class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded">🗑 Eliminar</a>
+                   class="flex-1 text-center bg-red-500 hover:bg-red-400 text-white px-3 py-2 rounded-md transition">🗑 Eliminar</a>
             </div>
-
         </div>
     </div>
 </main>
-
 </body>
 </html>

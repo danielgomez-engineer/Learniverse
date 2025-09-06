@@ -3,8 +3,8 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layout/base}" lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>Editar Subtema</title>
+  <meta charset="UTF-8">
+  <title>Editar Subtema</title>
 </head>
 <body>
 <main layout:fragment="content" class="max-w-2xl mx-auto bg-white p-8 rounded-lg shadow space-y-6">
@@ -14,32 +14,32 @@
   <form th:action="@{'/subtopics/edit/' + ${subtopic.id}}" th:object="${subtopic}" method="post" class="space-y-4">
     <input type="hidden" th:field="*{id}"/>
 
+    <!-- Seleccionar Tema -->
     <div>
-      <label for="title" class="block font-medium text-gray-700">Título</label>
-      <input type="text" id="title" th:field="*{title}"
-             class="mt-1 block w-full border border-gray-300 rounded-md p-2 focus:border-indigo-500 focus:ring focus:ring-indigo-200" />
-      <p class="text-red-500 text-sm mt-1" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></p>
-    </div>
-
-    <div>
-      <label for="description" class="block font-medium text-gray-700">Descripción</label>
-      <input type="text" id="description" th:field="*{description}"
-             class="mt-1 block w-full border border-gray-300 rounded-md p-2 focus:border-indigo-500 focus:ring focus:ring-indigo-200" />
-      <p class="text-red-500 text-sm mt-1" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></p>
-    </div>
-
-<!-- SELECCIONAR TEMA   -->
-    <div>
-      <label for="idTopic" class="block font-medium text-gray-700">Temas</label>
+      <label for="idTopic" class="block font-medium text-gray-700">Tema Principal</label>
       <select id="idTopic" th:field="*{idTopic}" required
               class="mt-1 block w-full border border-gray-300 rounded-md p-2 bg-white focus:border-indigo-500 focus:ring focus:ring-indigo-200">
-        <option value="" disabled selected>-- Selecciona un tema --</option>
+        <option value="" disabled>-- Selecciona un tema --</option>
         <option th:each="topic : ${topics}"
                 th:value="${topic.id}"
                 th:text="${topic.title}">
         </option>
       </select>
       <p class="text-red-500 text-sm mt-1" th:if="${#fields.hasErrors('idTopic')}" th:errors="*{idTopic}"></p>
+    </div>
+
+    <div>
+      <label for="title" class="block font-medium text-gray-700">Título del Subtema</label>
+      <input type="text" id="title" th:field="*{title}" required
+             class="mt-1 block w-full border border-gray-300 rounded-md p-2 focus:border-indigo-500 focus:ring focus:ring-indigo-200"/>
+      <p class="text-red-500 text-sm mt-1" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></p>
+    </div>
+
+    <div>
+      <label for="description" class="block font-medium text-gray-700">Descripción</label>
+      <textarea id="description" th:field="*{description}" rows="4" required
+                class="mt-1 block w-full border border-gray-300 rounded-md p-3 focus:border-indigo-500 focus:ring focus:ring-indigo-200 resize-y"></textarea>
+      <p class="text-red-500 text-sm mt-1" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></p>
     </div>
 
     <div class="flex gap-4">

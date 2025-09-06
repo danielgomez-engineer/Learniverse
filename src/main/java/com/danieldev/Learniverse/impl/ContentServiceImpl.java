@@ -2,10 +2,12 @@ package com.danieldev.Learniverse.impl;
 
 import com.danieldev.Learniverse.dto.request.ContentRequest;
 import com.danieldev.Learniverse.dto.response.ContentResponse;
+import com.danieldev.Learniverse.dto.response.SectionResponse;
 import com.danieldev.Learniverse.exception.ResourceNotFoundException;
 import com.danieldev.Learniverse.model.Content;
 import com.danieldev.Learniverse.model.Subtopic;
 import com.danieldev.Learniverse.repository.ContentRepository;
+import com.danieldev.Learniverse.repository.SectionRepository;
 import com.danieldev.Learniverse.repository.SubtopicRepository;
 import com.danieldev.Learniverse.service.ContentService;
 import lombok.RequiredArgsConstructor;
@@ -20,6 +22,7 @@ public class ContentServiceImpl implements ContentService {
 
     private final SubtopicRepository subtopicRepository;
     private final ContentRepository contentRepository;
+    private final SectionRepository sectionRepository;
     private final ModelMapper mapper;
 
 
@@ -40,12 +43,25 @@ public class ContentServiceImpl implements ContentService {
     public List<ContentResponse> findAll() {
         List<Content> contents = contentRepository.findAll();
 
-        if(contents.isEmpty()) {
+        if (contents.isEmpty()) {
             throw new ResourceNotFoundException("No hay contenidos registrados. contentImpl/findAll");
         }
 
-        return contents.stream().map(content -> mapper.map(content, ContentResponse.class)).toList();
+        return contents.stream().map(content -> {
+            ContentResponse dto = mapper.map(content, ContentResponse.class);
+
+            // mapeo manual de secciones
+            if (content.getSections() != null) {
+                List<SectionResponse> sectionDtos = content.getSections().stream()
+                        .map(section -> mapper.map(section, SectionResponse.class))
+                        .toList();
+                dto.setSections(sectionDtos);
+            }
+            return dto;
+        }).toList();
     }
+
+
 
     @Override
     public ContentResponse findById(Long id) {

@@ -33,7 +33,7 @@ public class AdminContentController {
     }
 
     // ME LLEVA AL FORM DE CREAR CONTENIDO CON UN REQUEST QUE ES EL QUE CREAREMOS Y UNA LISTA DE SUBTEMAS PARA QUE
-    @GetMapping("content/new")///SELECCIONE A QUE SUBTEMA VA A PERTENER
+    @GetMapping("/contents/new")///SELECCIONE A QUE SUBTEMA VA A PERTENER
     public String viewFormCreate(Model model) {
         model.addAttribute("subtopics", subtopicService.findAllSubtopics());
         model.addAttribute("content", new ContentRequest());

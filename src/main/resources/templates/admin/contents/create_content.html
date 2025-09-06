@@ -7,12 +7,14 @@
     <title>Crear Contenido</title>
 </head>
 <body>
-<main layout:fragment="content" class="max-w-2xl mx-auto bg-white p-8 rounded-lg shadow space-y-6">
+<main layout:fragment="content"
+      class="max-w-2xl mx-auto bg-white p-8 rounded-lg shadow space-y-6">
 
     <h2 class="text-2xl font-bold text-gray-800">Crear Nuevo Contenido</h2>
 
     <form th:action="@{/contents}" th:object="${content}" method="post" class="space-y-4">
-  <!--    Seleccionar un subtema    -->
+
+        <!-- Seleccionar Subtema -->
         <div>
             <label for="idSubtopic" class="block font-medium text-gray-700">Subtema Principal</label>
             <select id="idSubtopic" th:field="*{idSubtopic}" required
@@ -23,26 +25,39 @@
                         th:text="${subtopic.title}">
                 </option>
             </select>
-            <p class="text-red-500 text-sm mt-1" th:if="${#fields.hasErrors('idSubtopic')}" th:errors="*{idSubtopic}"></p>
+            <p class="text-red-500 text-sm mt-1"
+               th:if="${#fields.hasErrors('idSubtopic')}"
+               th:errors="*{idSubtopic}"></p>
         </div>
+
+        <!-- Título -->
         <div>
             <label for="title" class="block font-medium text-gray-700">Título del Contenido</label>
             <input type="text" id="title" th:field="*{title}" required
                    class="mt-1 block w-full border border-gray-300 rounded-md p-2 focus:border-indigo-500 focus:ring focus:ring-indigo-200"/>
-            <p class="text-red-500 text-sm mt-1" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></p>
-        </div>
-        <div>
-            <label for="description" class="block font-medium text-gray-700">Descripción del Contenido</label>
-            <input type="text" id="description" th:field="*{description}" required
-                   class="mt-1 block w-full border border-gray-300 rounded-md p-2 focus:border-indigo-500 focus:ring focus:ring-indigo-200"/>
-            <p class="text-red-500 text-sm mt-1" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></p>
+            <p class="text-red-500 text-sm mt-1"
+               th:if="${#fields.hasErrors('title')}"
+               th:errors="*{title}"></p>
         </div>
 
+        <!-- Descripción -->
+        <div>
+            <label for="description" class="block font-medium text-gray-700">Descripción</label>
+            <textarea id="description" th:field="*{description}" rows="4" required
+                      class="mt-1 block w-full border border-gray-300 rounded-md p-3 focus:border-indigo-500 focus:ring focus:ring-indigo-200 resize-y"></textarea>
+            <p class="text-red-500 text-sm mt-1"
+               th:if="${#fields.hasErrors('description')}"
+               th:errors="*{description}"></p>
+        </div>
+
+        <!-- Botones -->
         <div class="flex gap-4">
-            <button type="submit" class="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-500 transition">
+            <button type="submit"
+                    class="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-500 transition">
                 Guardar
             </button>
-            <a th:href="@{/admin_contents}" class="px-4 py-2 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300 transition">
+            <a th:href="@{/admin_contents}"
+               class="px-4 py-2 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300 transition">
                 Cancelar
             </a>
         </div>

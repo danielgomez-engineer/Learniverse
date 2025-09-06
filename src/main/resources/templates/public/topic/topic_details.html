@@ -7,16 +7,20 @@
     <title>Temas</title>
 </head>
 <body>
-<main layout:fragment="content" class="max-w-6xl mx-auto space-y-8 px-4">
+<main layout:fragment="content" class="max-w-6xl mx-auto space-y-10 px-4">
 
-    <h1 class="text-3xl font-bold text-gray-800 text-center">Temas</h1>
-    <p class="text-center text-gray-600 max-w-2xl mx-auto">
-        Explora diferentes temas y aprende paso a paso. Selecciona uno para ver sus subtemas.
-    </p>
+    <!-- Encabezado -->
+    <section class="text-center space-y-3">
+        <h1 class="text-3xl md:text-4xl font-bold text-gray-800">Temas</h1>
+        <p class="text-gray-600 max-w-2xl mx-auto">
+            Explora diferentes temas y aprende paso a paso. Selecciona uno para ver sus subtemas.
+        </p>
+    </section>
 
+    <!-- Grid de temas -->
     <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         <div th:each="topic: ${topics}"
-             class="bg-white rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden flex flex-col">
+             class="bg-white rounded-xl border border-gray-100 shadow-sm hover:shadow-lg transition-transform duration-300 hover:-translate-y-1 overflow-hidden flex flex-col">
 
             <!-- Contenido -->
             <div class="p-5 flex flex-col flex-grow">
@@ -32,8 +36,6 @@
             </div>
         </div>
     </div>
-
 </main>
-
 </body>
 </html>

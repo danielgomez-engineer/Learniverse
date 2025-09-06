@@ -1,20 +1,36 @@
+<!-- navbar.html -->
 <div th:fragment="navbar" class="bg-indigo-600 text-white shadow-md">
-    <div class="container mx-auto flex flex-wrap items-center justify-between px-4 py-2">
-        <div  class="flex flex-wrap gap-4">
-            <a th:href="@{/}" class="hover:bg-indigo-500 px-3 py-2 rounded-md transition">Inicio</a>
-            <a th:href="@{/topic_details}" class="hover:bg-indigo-500 px-3 py-2 rounded-md transition">Temas</a>
-            <a th:href="@{/subtopic_details}" class="hover:bg-indigo-500 px-3 py-2 rounded-md transition">Subtemas</a>
-            <a th:href="@{/content_details}" class="hover:bg-indigo-500 px-3 py-2 rounded-md transition">Contenidos</a>
-            <a th:href="@{/}" class="hover:bg-indigo-500 px-3 py-2 rounded-md transition">Contactanos</a>
-            <a th:href="@{/}" class="hover:bg-indigo-500 px-3 py-2 rounded-md transition">¿Qué es Learniverse?</a>
-            <a th:href="@{/}" class="hover:bg-indigo-500 px-3 py-2 rounded-md transition">Buscar</a>
-            <a th:href="@{/}" class="hover:bg-indigo-500 px-3 py-2 rounded-md transition">Iniciar sesion</a>
-            <a th:href="@{/}" class="hover:bg-indigo-500 px-3 py-2 rounded-md transition">Registrarse</a>
-        </div>
+    <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <nav class="flex items-center justify-between h-12">
+            <!-- Links -->
+            <div class="flex items-center gap-2 sm:gap-4 flex-wrap">
+                <a th:href="@{/}" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-white transition">Inicio</a>
+                <a th:href="@{/topic_details}" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-white transition">Temas</a>
+                <a th:href="@{/subtopic_details}" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-white transition">Subtemas</a>
+                <a th:href="@{/content_details}" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-white transition">Contenidos</a>
+                <a th:href="@{/#contact}" class="px-3 py-2 rounded-md text-sm font-medium hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-white transition">Contáctanos</a>
+            </div>
 
-        <div class="bg-yellow-400 text-gray-900 font-semibold px-3 py-2 rounded-md hover:bg-yellow-300 transition">
-            <a th:href="@{/manage}">Gestion de recursos</a>
-        </div>
+            <!-- Acciones -->
+            <div class="hidden sm:flex items-center gap-3">
+                <!-- Inicio de sesión -->
+                <a th:href="@{/login}"
+                   class="px-4 py-2 rounded-md text-sm font-medium border border-white/70 text-white hover:bg-white hover:text-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white transition">
+                    Iniciar sesión
+                </a>
+                <!-- Registro -->
+                <a th:href="@{/register}"
+                   class="px-4 py-2 rounded-md text-sm font-semibold bg-yellow-400 text-gray-900 shadow-sm hover:bg-yellow-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500 transition">
+                    Registrarse
+                </a>
+            </div>
+            <!-- Botón de gestión -->
+            <div class="hidden sm:flex items-center">
+                <a th:href="@{/manage}"
+                   class="inline-flex items-center justify-center px-3 py-2 rounded-md bg-yellow-400 text-gray-900 font-semibold text-sm shadow-sm hover:bg-yellow-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500 transition">
+                    Gestión de recursos
+                </a>
+            </div>
+        </nav>
     </div>
-
 </div>

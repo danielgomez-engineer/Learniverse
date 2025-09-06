@@ -1,10 +1,17 @@
-<div th:fragment="header" class="bg-white shadow-sm border-b">
-    <div class="container mx-auto flex items-center gap-4 px-4 py-3">
-        <img th:src="@{/img/logo.png}" alt="Logo_app" class="w-12 h-12 object-contain">
-        <div>
-            <h1 class="text-xl font-bold text-gray-800">Learniverse</h1>
-            <p class="text-sm text-gray-500">Lo complejo explicado en fragmentos simples.</p>
-        </div>
+<!-- header.html -->
+<div th:fragment="header"
+     class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-200 shadow-sm">
+    <div class="container mx-auto max-w-7xl flex items-center justify-between px-4 sm:px-6 lg:px-8 h-16">
+        <!-- Logo -->
+        <a th:href="@{/}" class="flex items-center gap-3 focus:outline-none focus:ring-2 focus:ring-sky-500 rounded-lg">
+            <img th:src="@{/img/logo.png}" alt="Logo de Learniverse" class="w-10 h-10 object-contain" />
+            <div class="flex flex-col">
+                <h1 class="text-lg sm:text-xl font-bold tracking-tight text-gray-900">Learniverse</h1>
+                <p class="hidden sm:block text-xs sm:text-sm text-gray-500 leading-tight">Lo complejo explicado en fragmentos simples</p>
+            </div>
+        </a>
     </div>
-
 </div>
+
+
+<!--crear readme y empezar a escribir lo que me vaya faltando-->

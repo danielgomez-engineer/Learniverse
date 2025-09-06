@@ -9,13 +9,12 @@
     <!-- Hero -->
     <section class="grid md:grid-cols-2 gap-8 items-center">
         <div class="flex justify-center">
-            <!-- Aquí imagen -->
             <img th:src="@{img/programacion.png}" alt="Aprender programación"
                  class="rounded-lg shadow-md object-cover">
         </div>
         <div class="space-y-4">
             <h2 class="text-3xl font-bold text-gray-800 leading-tight">Domina la programación, sección por sección</h2>
-            <p class="text-lg text-gray-600">Explicaciones simples. Videos cortos. Conceptos que perduran.</p>
+            <p class="text-lg text-gray-600 max-w-xl">Explicaciones simples. Videos cortos. Conceptos que perduran.</p>
             <div class="flex flex-wrap gap-4">
                 <a th:href="@{/topic_details}"
                    class="px-5 py-3 bg-indigo-600 text-white rounded-md shadow hover:bg-indigo-500 transition">
@@ -32,7 +31,7 @@
     <!-- Qué es Learniverse -->
     <section class="bg-white rounded-lg shadow p-8">
         <h2 class="text-2xl font-bold text-gray-800 mb-4">¿Qué es Learniverse?</h2>
-        <p class="text-gray-600 mb-6">
+        <p class="text-gray-600 mb-6 max-w-3xl">
             Learniverse es una plataforma de aprendizaje técnico diseñada para estudiantes autodidactas,
             desarrolladores curiosos y profesionales que desean repasar conceptos clave de programación a su ritmo.
         </p>
@@ -48,13 +47,12 @@
     <!-- Cómo funciona -->
     <section class="grid md:grid-cols-2 gap-8 items-center">
         <div class="flex justify-center">
-            <!-- Imagen/Infografía -->
             <img th:src="@{/img/formato.png}" alt="Estructura Learniverse"
                  class="rounded-lg shadow-md object-cover">
         </div>
         <div>
             <h2 class="text-2xl font-bold text-gray-800 mb-4">Cómo funciona</h2>
-            <p class="text-gray-600">
+            <p class="text-gray-600 max-w-xl">
                 Desde los fundamentos hasta temas avanzados, cada sección está diseñada para que aprendas lo que necesitas,
                 sin perder tiempo.
             </p>
@@ -70,7 +68,7 @@ Temas
     <!-- Sobre Learniverse -->
     <section class="bg-indigo-50 rounded-lg p-8">
         <h2 class="text-2xl font-bold text-gray-800 mb-4">Sobre Learniverse</h2>
-        <p class="text-gray-700">
+        <p class="text-gray-700 max-w-3xl">
             Learniverse nació como un proyecto personal de Daniel, Ingeniero de Sistemas y desarrollador
             de software apasionado por aprender más y buscar las mejores maneras de hacerlo.
             Esta es una plataforma en constante crecimiento, abierta para cualquier persona
@@ -97,9 +95,8 @@ Temas
         </div>
     </section>
 
-
     <!-- Testimonios -->
-    <section class="bg-white rounded-lg shadow p-8">
+    <section class="bg-indigo-50 rounded-lg p-8">
         <h2 class="text-2xl font-bold text-gray-800 mb-4">Testimonios</h2>
         <p class="text-gray-600">✨ Próximamente: comentarios reales de usuarios de Learniverse.</p>
     </section>
@@ -116,6 +113,43 @@ Temas
             </a>
         </div>
     </section>
+
+    <form action="https://formspree.io/f/mjkepler" method="POST"
+          class="bg-white shadow-lg rounded-2xl p-8 max-w-2xl mx-auto space-y-6" id="contact">
+
+        <!-- Encabezado -->
+        <div class="text-center">
+            <h2 class="text-2xl font-bold text-gray-800">📩 Contáctanos</h2>
+            <p class="text-gray-500 text-sm mt-1">Te responderemos lo más pronto posible</p>
+        </div>
+
+        <!-- Nombre -->
+        <div>
+            <label for="nombre" class="block text-sm font-medium text-gray-700 mb-1">Nombre</label>
+            <input type="text" id="nombre" name="nombre" required
+                   class="w-full rounded-lg border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 shadow-sm text-sm px-3 py-2 transition"/>
+        </div>
+
+        <!-- Email -->
+        <div>
+            <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Correo electrónico</label>
+            <input type="email" id="email" name="email" required
+                   class="w-full rounded-lg border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 shadow-sm text-sm px-3 py-2 transition"/>
+        </div>
+
+        <!-- Mensaje -->
+        <div>
+            <label for="mensaje" class="block text-sm font-medium text-gray-700 mb-1">Mensaje</label>
+            <textarea id="mensaje" name="mensaje" rows="4" required
+                      class="w-full rounded-lg border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 shadow-sm text-sm px-3 py-2 transition"></textarea>
+        </div>
+
+        <!-- Botón -->
+        <button type="submit"
+                class="w-full bg-indigo-600 text-white font-semibold py-3 rounded-lg shadow-md hover:bg-indigo-500 transition transform hover:scale-[1.01]">
+            Enviar Mensaje
+        </button>
+    </form>
 
 </main>
 </html>

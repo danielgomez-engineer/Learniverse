@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/base}">
+<head>
+    <meta charset="UTF-8">
+    <title>Administrador de Secciones</title>
+</head>
+<body>
+<main layout:fragment="content" class="max-w-6xl mx-auto px-4 py-8">
+    <h2 class="text-3xl font-bold text-gray-800 mb-6">Administrar Secciones</h2>
+
+    <div th:if="${successMessage}"
+         class="bg-green-100 border border-green-300 text-green-800 px-4 py-3 rounded mb-6">
+        <p th:text="${successMessage}"></p>
+    </div>
+
+    <div class="mb-6">
+        <a th:href="@{/section/new}"
+           class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded shadow">
+            ➕ Crear nueva Sección
+        </a>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div th:each="section : ${sections}"
+             class="bg-white rounded-lg shadow p-4 flex flex-col justify-between hover:shadow-lg transition-shadow">
+            <div>
+                <h3 class="text-xl font-semibold text-gray-800" th:text="${section.title}"></h3>
+                <p class="text-gray-600 mt-2" th:text="${section.description}"></p>
+            </div>
+            <div class="flex gap-2 mt-4">
+                <a th:href="@{'/sections/edit/' + ${section.id}}"
+                   class="bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-1 rounded">✏ Editar</a>
+                <a th:href="@{'/sections/delete/' + ${section.id}}"
+                   class="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded">🗑 Eliminar</a>
+            </div>
+        </div>
+    </div>
+</main>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/base}">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${section.title}">Sección</title>
+</head>
+<body>
+<main layout:fragment="content" class="max-w-4xl mx-auto px-6 py-10 space-y-10">
+
+    <!-- Título -->
+    <h1 th:text="${section.title}"
+        class="text-4xl font-extrabold text-gray-900 text-center"></h1>
+
+    <!-- Tarjeta de contenido -->
+    <article class="bg-white rounded-2xl shadow-md p-8 hover:shadow-xl transition duration-300 space-y-6">
+
+        <!-- Descripción -->
+        <p th:text="${section.description}" class="text-gray-700 leading-relaxed text-lg"></p>
+
+        <!-- Código -->
+        <div th:if="${section.code != null}">
+            <h2 class="text-xl font-semibold text-gray-800 mb-3">Ejemplo de código</h2>
+            <pre class="rounded-lg overflow-x-auto bg-gray-900 text-gray-100 p-4 text-sm">
+<code th:text="${section.code}" th:class="'language-' + ${section.language}"></code>
+            </pre>
+        </div>
+
+        <!-- Video con miniatura -->
+        <div th:if="${!#strings.isEmpty(section.urlVideo)}">
+            <h2 class="text-xl font-semibold text-gray-800 mb-3">Video explicativo</h2>
+            <a th:href="${section.urlVideo}" target="_blank" class="block group relative rounded-lg overflow-hidden shadow hover:shadow-lg transition">
+                <!-- Imagen de miniatura desde YouTube -->
+                <img th:src="@{'https://img.youtube.com/vi/' + ${#strings.substring(section.urlVideo, section.urlVideo.indexOf('v=') + 2)} + '/hqdefault.jpg'}"
+                     alt="Miniatura del video"
+                     class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300">
+                <!-- Capa con ícono Play -->
+                <div class="absolute inset-0 flex items-center justify-center bg-black/40 group-hover:bg-black/50 transition">
+                    <span class="text-white text-4xl">▶</span>
+                </div>
+            </a>
+        </div>
+    </article>
+
+    <!-- Navegación -->
+    <div class="flex justify-between items-center">
+
+        <!-- Anterior -->
+        <a th:if="${previous != null}"
+           th:href="@{'/section/' + ${previous.id}}"
+           class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition">
+            ← Anterior
+        </a>
+        <button th:if="${previous == null}" disabled
+                class="px-4 py-2 bg-gray-100 text-gray-400 rounded-lg cursor-not-allowed">
+            ← Anterior
+        </button>
+
+        <!-- Siguiente -->
+        <a th:if="${next != null}"
+           th:href="@{'/section/' + ${next.id}}"
+           class="ml-auto px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-500 transition">
+            Siguiente →
+        </a>
+        <button th:if="${next == null}" disabled
+                class="ml-auto px-4 py-2 bg-gray-100 text-gray-400 rounded-lg cursor-not-allowed">
+            Siguiente →
+        </button>
+    </div>
+</main>
+</body>
+</html>

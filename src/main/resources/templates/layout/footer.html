@@ -1,11 +1,13 @@
+<!-- footer.html -->
 <div th:fragment="footer" class="bg-gray-900 text-gray-300">
-    <div class="container mx-auto px-4 py-6 flex flex-col md:flex-row justify-between items-center gap-4">
-        <p class="text-sm">&copy; Learniverse. Todos los derechos reservados</p>
-        <div class="flex gap-4">
-            <a th:href="@{/}" class="hover:text-white transition">LinkedIn</a>
-            <a th:href="@{/}" class="hover:text-white transition">GitHub</a>
-            <a th:href="@{/}" class="hover:text-white transition">WhatsApp</a>
-            <a th:href="@{/}" class="hover:text-white transition">YouTube</a>
+    <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10">
+        <div class="flex flex-col md:flex-row items-center justify-between gap-6 border-t border-gray-800 pt-6">
+            <p class="text-sm">&copy; <span th:text="${#dates.format(#dates.createNow(), 'yyyy')}">2025</span> Learniverse. Todos los derechos reservados.</p>
+            <div class="flex gap-4 text-sm">
+                <a th:href="@{/terminos}" class="hover:text-white transition">Términos</a>
+                <a th:href="@{/privacidad}" class="hover:text-white transition">Privacidad</a>
+                <a th:href="@{/contact}" class="hover:text-white transition">Contacto</a>
+            </div>
         </div>
     </div>
 </div>

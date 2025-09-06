@@ -22,11 +22,18 @@ public class Section {
     @Column(name = "descripcion", length = 5000, nullable = false)
     private String description;
 
+    private int orderIndex; // define el orden dentro del contenido
+
+    @Column(name="codigo", length = 5000)
+    private String code;
+
+    @Enumerated(EnumType.STRING)
+    private Language language;
+
     @Column(name = "url_video", length = 500)
     private String urlVideo;
 
-    @Column(name = "url_continuacion", length = 500)
-    private String urlContinuation;
+
 
     @ManyToOne
     @JoinColumn(name = "contenido_id")
