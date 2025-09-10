@@ -6,6 +6,7 @@ import com.danieldev.Learniverse.service.ContentService;
 import com.danieldev.Learniverse.service.SubtopicService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -25,6 +26,7 @@ public class AdminContentController {
     private final SubtopicService subtopicService;
 
     //ME LLEVA AL ADMIN DE CONTENIDOS
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/admin_contents")
     public String viewAdminContents(Model model) {
         List<ContentResponse> contents = contentService.findAll();
@@ -34,6 +36,7 @@ public class AdminContentController {
 
     // ME LLEVA AL FORM DE CREAR CONTENIDO CON UN REQUEST QUE ES EL QUE CREAREMOS Y UNA LISTA DE SUBTEMAS PARA QUE
     @GetMapping("/contents/new")///SELECCIONE A QUE SUBTEMA VA A PERTENER
+    @PreAuthorize("hasRole('ADMIN')")
     public String viewFormCreate(Model model) {
         model.addAttribute("subtopics", subtopicService.findAllSubtopics());
         model.addAttribute("content", new ContentRequest());
@@ -41,6 +44,7 @@ public class AdminContentController {
     }
 
     // GUARDAMOS EL CONTENIDO QUE RECIBIMOS DEL FORM
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/contents")
     public String savebContent(@Valid @ModelAttribute("content") ContentRequest request,
                                BindingResult result, Model model) {
@@ -53,6 +57,7 @@ public class AdminContentController {
     }
 
     // MOSTRAR FORMULARTIO DE EDITAR
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/contents/edit/{id}")
     public String viewFormEdit(@PathVariable Long id, Model model) {
 
@@ -71,6 +76,7 @@ public class AdminContentController {
     }
 
     // GUARDAMOS SUBTEMA
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/contents/edit/{id}")
     public String updateContent(@PathVariable Long id,
                                 @Valid @ModelAttribute("content") ContentRequest request,
@@ -84,6 +90,7 @@ public class AdminContentController {
     }
 
     // FORMULARIO PARA CONFIRMAR LA ELIMINACION
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/contents/delete/{id}")
     public String viewDeleteContent (Model model, @PathVariable Long id) {
         ContentResponse response = contentService.findById(id);
@@ -96,6 +103,7 @@ public class AdminContentController {
     }
 
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("contents/delete/{id}")
     public String delete(@PathVariable Long id, RedirectAttributes redirectAttributes) {
         contentService.delete(id);

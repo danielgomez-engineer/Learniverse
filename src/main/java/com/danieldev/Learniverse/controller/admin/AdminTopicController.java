@@ -5,6 +5,8 @@ import com.danieldev.Learniverse.dto.response.TopicResponse;
 import com.danieldev.Learniverse.service.TopicService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -22,13 +24,18 @@ public class AdminTopicController {
 
     private final TopicService topicService;
 
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/manage") // mostrar manage donde se gestionan los recursos
-    public String showManageResource() {
-
+    public String showManageResource(Authentication a) {
+        System.out.println("Usuario autemticado " + a.getName());
+        a.getAuthorities().forEach(aa ->
+                System.out.println(">>> Authority en controller: " + aa.getAuthority())
+        );
         return "admin/manage";
     }
 
     //administrador de temas
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/admin_topics")
     public String viewAdminTopics(Model model) {
         List<TopicResponse> topics = topicService.findAllTopics();
@@ -36,12 +43,14 @@ public class AdminTopicController {
         return "admin/topics/admin_topics";
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/topics/new")// de manage nos muestra el form de crear tema
     public String showFormCreate(Model model) {
         model.addAttribute("topic", new TopicRequest());
         return "admin/topics/create";
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/topics") //guardar el tema
     public String saveTopic(@Valid @ModelAttribute("topic") TopicRequest request,
                             BindingResult result, Model model) {
@@ -55,6 +64,7 @@ public class AdminTopicController {
     }
 
     //*******FORMULARIO PARA MOSTRAR EDITAR TEMA********************
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/topics/edit/{id}")
     public String showFormEdit(Model model, @PathVariable Long id) {
 
@@ -71,6 +81,7 @@ public class AdminTopicController {
     }
 
     //*******FORMULARIO PARA GUARDAR TEMA EN LA BASE DE DATOS********************
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/topics/edit/{id}")
     public String updateTopic(@PathVariable Long id,
                                @Valid @ModelAttribute("topic") TopicRequest request,
@@ -85,6 +96,7 @@ public class AdminTopicController {
     }
 
     @GetMapping("/topics/delete/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public String showDeleteForm(Model model, @PathVariable Long id) {
         TopicResponse response = topicService.findTopicById(id);
         if (response == null) {
@@ -97,6 +109,7 @@ public class AdminTopicController {
     }
 
     @PostMapping("/topics/delete/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public String deleteTopic(@PathVariable Long id, RedirectAttributes redirectAttributes) {
         topicService.deleteTopic(id);
         redirectAttributes.addFlashAttribute("successMessage", "Tema eliminado correctamente");

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/base}" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+</head>
+<body>
+<main layout:fragment="content" class="flex flex-col items-center justify-center min-h-[70vh] text-center space-y-6">
+
+    <!-- Mensaje de bienvenida -->
+    <h1 class="text-4xl font-bold text-gray-800">
+        ¡Bienvenido <span th:text="${#authentication.name}">Usuario</span>! 🎉
+    </h1>
+
+    <p class="text-lg text-gray-600">
+        Has iniciado sesión correctamente.
+    </p>
+
+    <!-- Botón para ir al home -->
+    <a th:href="@{/}"
+       class="px-6 py-3 bg-indigo-600 text-white text-lg rounded-lg shadow hover:bg-indigo-500 transition">
+        Ir al inicio
+    </a>
+
+</main>
+</body>
+</html>

@@ -6,10 +6,5 @@
             </div>
 
 
-EN EL NAVBAR:
-configurar los botones de inicio sesion y registro 
-y gestion de recursos solo a admin.
 
 
-CORREGIR LO DEL TIPO DE LENGUAJE
-PARA AHORA, SUBIR LO QUE llevo del proyecto

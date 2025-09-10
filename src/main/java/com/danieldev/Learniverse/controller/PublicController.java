@@ -87,7 +87,7 @@ public class PublicController {
 
 
     // MOSTRAR SECCIÓN EN PÁGINA COMPLETA
-    @GetMapping("/section/{idSection}")
+    @GetMapping("/sections/{idSection}")
     public String viewContentSections(@PathVariable Long idSection, Model model) {
 
         SectionResponse section = sectionService.findById(idSection);
@@ -100,4 +100,6 @@ public class PublicController {
 
         return "public/section/section_details"; // Muestra la sección completa
     }
+
+
 }

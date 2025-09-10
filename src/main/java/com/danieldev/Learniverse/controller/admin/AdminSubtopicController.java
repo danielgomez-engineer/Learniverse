@@ -8,6 +8,7 @@ import com.danieldev.Learniverse.service.SubtopicService;
 import com.danieldev.Learniverse.service.TopicService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -28,6 +29,7 @@ public class AdminSubtopicController {
 
 
     //me lleva al admin_subtopics donde estan todos los subtemas pertenecientes a un tema
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/admin_subtopics")
     public String viewAdminSubtopics(Model model) {
         List<SubtopicResponse> subtopics = subtopicService.findAllSubtopics();
@@ -39,6 +41,7 @@ public class AdminSubtopicController {
     }
         //*************ME LLEVA AL FORM DE CREAR SUBTEMA************* */
     @GetMapping("/subtopic/new")
+    @PreAuthorize("hasRole('ADMIN')")
     public String ShowFormCreateSubtopic(Model model) {
         model.addAttribute("topics", topicService.findAllTopics());
         model.addAttribute("subtopic", new SubtopicRequest());
@@ -47,6 +50,7 @@ public class AdminSubtopicController {
 
     /*AQUI GUARDAMOS EL SUBTEMA EN LA BASE DE DATOS*/
     @PostMapping("/subtopics")
+    @PreAuthorize("hasRole('ADMIN')")
     public String savedSubtopic(@Valid @ModelAttribute("subtopic") SubtopicRequest request,
                                 BindingResult result, Model model) {
         if(result.hasErrors()) {
@@ -60,6 +64,7 @@ public class AdminSubtopicController {
 
     //********************************MOSTRAR FORMULARIO PARA EDITAR SUBTEMA*/
     @GetMapping("/subtopics/edit/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public String viewFormEdit(@PathVariable Long id, Model model) {
 
         //el subtema que se va a actualizar
@@ -81,6 +86,7 @@ public class AdminSubtopicController {
 
     //********************************GUARDAR SUBTEMA*/
     @PostMapping("/subtopics/edit/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public String updateSubtopic(@PathVariable Long id,
                                  @Valid @ModelAttribute("subtopic") SubtopicRequest request,
                                  BindingResult result,
@@ -97,6 +103,7 @@ public class AdminSubtopicController {
 
     //********************************NOS LLEVA AL FORMULARIO PARA CONFIRMAR AL ELIMINACION*/
     @GetMapping("/subtopics/delete/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public String viewDeleteSubtopic(Model model, @PathVariable  Long id) {
         SubtopicResponse response = subtopicService.findByIdSubtopic(id);
         if (response == null) {
@@ -109,6 +116,7 @@ public class AdminSubtopicController {
     }
 
     @PostMapping("/subtopics/delete/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public String deleteTopic(@PathVariable Long id, RedirectAttributes redirectAttributes) {
         subtopicService.deleteSubtopic(id);
         redirectAttributes.addFlashAttribute("successMessage", "Subtema eliminado correctamente");

@@ -7,6 +7,7 @@ import com.danieldev.Learniverse.service.ContentService;
 import com.danieldev.Learniverse.service.SectionService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -25,6 +26,7 @@ public class AdminSectionController {
     private final SectionService sectionService;
     private final ContentService contentService;
 
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/admin_sections")
     public String viewAdminSection(Model model) {
         List<SectionResponse> sections = sectionService.findAll();
@@ -34,6 +36,7 @@ public class AdminSectionController {
 
     //METODO PARA CREAR UNA SECCION Y MUESTRA UNA LISTA DE CONTENIDOS QUE ES DONDE VA A seleccionar a que contenido
     @GetMapping("/section/new")//pertenece, igual con los lenguajes
+    @PreAuthorize("hasRole('ADMIN')")
     public String viewFormCreate(Model model) {
         model.addAttribute("contents", contentService.findAll());
         model.addAttribute("section", new SectionRequest());
@@ -43,6 +46,7 @@ public class AdminSectionController {
 
     //METODO PARA GUARDAR LA SECCION QUE VIENE DEL FORM
     @PostMapping("/sections")
+    @PreAuthorize("hasRole('ADMIN')")
     public String savedSection(@Valid @ModelAttribute("section")SectionRequest request,
                                BindingResult result, Model model) {
         if(result.hasErrors()) {
@@ -55,6 +59,7 @@ public class AdminSectionController {
 
     // NOS LLEVA AL FORM DE EDTIAR
     @GetMapping("/sections/edit/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public String viewFormEdit(@PathVariable Long id, Model model) {
         SectionResponse response = sectionService.findById(id);
 
@@ -75,6 +80,7 @@ public class AdminSectionController {
 
     //GUARDAMOS LA SECCION ACTUALIZADA
     @PostMapping("/sections/edit/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public String updateSection(@PathVariable Long id,
                                 @Valid @ModelAttribute("section") SectionRequest request,
                                 BindingResult result, Model model) {
@@ -89,6 +95,7 @@ public class AdminSectionController {
 
 
     @GetMapping("/sections/delete/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public String deleteSection(@PathVariable Long id, Model model) {
         SectionResponse response = sectionService.findById(id);
 
@@ -101,6 +108,7 @@ public class AdminSectionController {
     }
 
     @PostMapping("/sections/delete/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public String deleteSection(@PathVariable Long id, RedirectAttributes redirectAttributes){
         sectionService.delete(id);
         redirectAttributes.addFlashAttribute("successMessage", "Seccion eliminada correctamente");

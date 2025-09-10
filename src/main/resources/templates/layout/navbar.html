@@ -1,5 +1,5 @@
 <!-- navbar.html -->
-<div th:fragment="navbar" class="bg-indigo-600 text-white shadow-md">
+<div th:fragment="navbar" class="bg-indigo-600 text-white shadow-md" xmlns:sec="http://www.w3.org/1999/xhtml">
     <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <nav class="flex items-center justify-between h-12">
             <!-- Links -->
@@ -12,7 +12,7 @@
             </div>
 
             <!-- Acciones -->
-            <div class="hidden sm:flex items-center gap-3">
+            <div class="hidden sm:flex items-center gap-3" sec:authorize="isAnonymous()">
                 <!-- Inicio de sesión -->
                 <a th:href="@{/login}"
                    class="px-4 py-2 rounded-md text-sm font-medium border border-white/70 text-white hover:bg-white hover:text-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white transition">
@@ -25,12 +25,22 @@
                 </a>
             </div>
             <!-- Botón de gestión -->
-            <div class="hidden sm:flex items-center">
+            <div class="hidden sm:flex items-center" sec:authorize="hasRole('ADMIN')">
                 <a th:href="@{/manage}"
                    class="inline-flex items-center justify-center px-3 py-2 rounded-md bg-yellow-400 text-gray-900 font-semibold text-sm shadow-sm hover:bg-yellow-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500 transition">
                     Gestión de recursos
                 </a>
             </div>
+
+            <div sec:authorize="isAuthenticated()">
+                <form th:action="@{/logout}" method="post">
+                    <button type="submit"
+                            class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-md shadow transition">
+                        🔒 Cerrar sesión
+                    </button>
+                </form>
+            </div>
+
         </nav>
     </div>
 </div>
