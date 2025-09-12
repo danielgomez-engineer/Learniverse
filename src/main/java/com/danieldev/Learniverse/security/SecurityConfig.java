@@ -26,10 +26,10 @@ public class SecurityConfig {
         return http
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(
-                                "/","/public/**", "/img/**", "/register", "/login",
+                                "/", "/img/**", "/register", "/login",
                                 "/content_details","/section_details", "/subtopic_details",
-                                "/topic_details","/topics/**","/subtopics/**", "/contents/**",
-                                "/sections/**"
+                                "/topic_details","/topics/**","/subtopics/**","/terminos","/privacidad",
+                                "/contacto"
                         ).permitAll()
                         .anyRequest().authenticated()
                 )

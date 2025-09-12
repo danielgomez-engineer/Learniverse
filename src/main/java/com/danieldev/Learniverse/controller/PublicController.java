@@ -101,5 +101,21 @@ public class PublicController {
         return "public/section/section_details"; // Muestra la sección completa
     }
 
+    //footer
+    @GetMapping("/terminos")
+    public String terminos() {
+        return "public/terminos";
+    }
+
+    @GetMapping("/privacidad")
+    public String privacidad() {
+        return "public/privacidad";
+    }
+
+    @GetMapping("/contacto")
+    public String contacto() {
+        return "public/contacto";
+    }
+
 
 }
