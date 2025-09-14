@@ -1,21 +1,20 @@
 # Learniverse
-Plataforma web para aprender y repasar conceptos de programacion
-mediante secciones cortas, ejemplos practicos y videos 
-explicativos
+📚 Plataforma web para aprender y repasar conceptos de programacion
+mediante secciones cortas, ejemplos practicos y videos explicativos.
 ## Descripcion
 **Learniverse** es una biblioteca digital de programacion que organiza
 conceptos de forma clara y concisa. Incluye explicaciones con 
 ejemplo de codigo, descripciones breves y recursos de video para
 reforzar el aprendizaje.
-Este proyecto esta orientado a desarrolladores que buscan una 
+Este proyecto esta orientado a desarrolladores y estudiantes que buscan una 
 referencia practica y precisa sobre problemas reales de programacion
 en aplicaciones modernas.
 ## Tecnologias
-- Java 17
-- Spring Boot 3.5.4
-- Thymeleaf 
-- MySQl
-- Gradle
+- ☕ Java 17
+- 🌱 Spring Boot 3.5.4
+- 🎨 Thymeleaf
+- 🐬 MySQL
+- ⚙️ Gradle
 ## Instalacion y ejecucion
 1. Clonar el repositorio:
 ```bash
@@ -52,18 +51,22 @@ spring:
         
 ## Funcionalidades actuales
 - Gestión de *topics*, *subtopics*, *contents* y *sections* (CRUD completo).
-- Registro e inicio de sesión de usuarios.
-- Manejo de roles y permisos.
-- Funcionalidad para navegar entre secciones (anterior/siguiente).
-- Métodos avanzados como la búsqueda de subtemas dentro de un tema específico.
+- Registro e inicio de sesión de usuarios con autenticación.
+- Manejo de roles y permisos para diferentes tipos de usuario.
+- Navegación entre secciones (anterior/siguiente).
+- Búsqueda de subtemas dentro de un tema específico.
 ## Planes a futuro
-- Implementar búsqueda rápida por título y etiquetas.
-- Migrar el frontend a React para una experiencia más dinámica.
-- Añadir API REST para integrar con aplicaciones externas.
+- 🔍 Implementar búsqueda avanzada por título y etiquetas.
+- ⚛️ Migrar el frontend a React para mejorar la experiencia de usuario.
+- 🔗 Añadir API REST para integraciones con aplicaciones externas.
+- ☁️ Desplegar en la nube con pipeline CI/CD automatizado.
 ## Autor
 Desarrollado por **Daniel Felipe Gómez Ferreira**
 
-- 🌐 Portafolio: *(aquí pones el link cuando lo tengas)*
-- 💼 LinkedIn: [linkedin.com/in/daniel-felipe-gómez-ferreira-050062276](https://www.linkedin.com/in/daniel-felipe-g%C3%B3mez-ferreira-050062276/)
-- 📧 Email: danielf23.dev@gmail.com
+- 🌐 Portafolio: *(próximamente)*
+- 💼 LinkedIn: [linkedin.com/in/daniel-felipe-gómez-ferreira-050062276](https://www.linkedin.com/in/daniel-felipe-gómez-ferreira-050062276/)
+- 📧 Email: danielf23.dev@gmail.com  
+## Licencia
+Este proyecto está bajo la licencia MIT.  
+Si reutilizas este código, por favor mantén el crédito al autor original (**Daniel Felipe Gómez Ferreira**) y enlaza este repositorio.
 
