@@ -1,0 +1,17 @@
+# Etapa 1: build con Gradle y Java 17
+FROM gradle:8.10.2-jdk17 AS build
+WORKDIR /app
+
+COPY . .
+
+RUN gradle build -x test
+
+# Etapa 2: imagen ligera solo con el JAR
+FROM eclipse-temurin:17-jdk
+WORKDIR /app
+
+COPY --from=build /app/build/libs/Learniverse-0.0.1-SNAPSHOT.jar app.jar
+
+EXPOSE 8080
+
+ENTRYPOINT ["java", "-jar", "app.jar"]
