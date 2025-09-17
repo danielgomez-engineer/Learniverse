@@ -9,6 +9,12 @@ spring:
     driver-class-name: org.postgresql.Driver
     hikari:
       connection-init-sql: "SET NAMES 'UTF8'"
+      maximum-pool-size: 5               # Render DB gratis = pocas conexiones
+      minimum-idle: 2
+      idle-timeout: 10000                # 10s → libera rápido las conexiones inactivas
+      max-lifetime: 300000               # 5min → recicla conexiones viejas
+      connection-timeout: 30000          # 30s espera antes de dar timeout
+      leak-detection-threshold: 20000    # Detectar fugas (>20s loggea warning)
 
   jpa:
     hibernate:
