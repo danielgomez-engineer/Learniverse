@@ -33,6 +33,8 @@ public class Section {
     @Column(name = "url_video", length = 500)
     private String urlVideo;
 
+    @Column(name="url_imagen", length = 500)
+    private String urlImage;
 
 
     @ManyToOne

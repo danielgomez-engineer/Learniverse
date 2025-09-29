@@ -5,6 +5,7 @@ import com.danieldev.Learniverse.dto.response.ContentResponse;
 import com.danieldev.Learniverse.dto.response.SectionResponse;
 import com.danieldev.Learniverse.exception.ResourceNotFoundException;
 import com.danieldev.Learniverse.model.Content;
+import com.danieldev.Learniverse.model.Section;
 import com.danieldev.Learniverse.model.Subtopic;
 import com.danieldev.Learniverse.repository.ContentRepository;
 import com.danieldev.Learniverse.repository.SectionRepository;
@@ -14,6 +15,7 @@ import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
 import java.util.List;
 
 @Service
@@ -50,13 +52,15 @@ public class ContentServiceImpl implements ContentService {
         return contents.stream().map(content -> {
             ContentResponse dto = mapper.map(content, ContentResponse.class);
 
-            // mapeo manual de secciones
+            // mapeo manual de secciones con orden por orderIndex
             if (content.getSections() != null) {
                 List<SectionResponse> sectionDtos = content.getSections().stream()
+                        .sorted(Comparator.comparingInt(Section::getOrderIndex)) // 👈 ordena por orderIndex ASC
                         .map(section -> mapper.map(section, SectionResponse.class))
                         .toList();
                 dto.setSections(sectionDtos);
             }
+
             return dto;
         }).toList();
     }

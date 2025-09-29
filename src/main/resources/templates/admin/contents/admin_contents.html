@@ -33,7 +33,9 @@
 
             <div>
                 <h3 class="text-xl font-semibold text-gray-800" th:text="${content.title}"></h3>
-                <p class="text-gray-600 mt-2" th:text="${content.description}"></p>
+                <!-- Descripción -->
+                <p th:utext="${content.description}"
+                   class="text-gray-700 leading-relaxed text-lg whitespace-pre-line"></p>
             </div>
 
             <div class="flex gap-2 mt-4">

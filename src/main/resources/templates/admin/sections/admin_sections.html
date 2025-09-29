@@ -27,7 +27,12 @@
              class="bg-white rounded-lg shadow p-4 flex flex-col justify-between hover:shadow-lg transition-shadow">
             <div>
                 <h3 class="text-xl font-semibold text-gray-800" th:text="${section.title}"></h3>
-                <p class="text-gray-600 mt-2" th:text="${section.description}"></p>
+                <!-- Descripción -->
+                <p th:utext="${section.description}"
+                   class="text-gray-700 leading-relaxed text-lg whitespace-pre-line overflow-hidden text-ellipsis"
+                   style="display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;">
+                </p>
+
             </div>
             <div class="flex gap-2 mt-4">
                 <a th:href="@{'/sections/edit/' + ${section.id}}"

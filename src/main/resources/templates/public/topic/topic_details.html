@@ -25,7 +25,9 @@
             <!-- Contenido -->
             <div class="p-5 flex flex-col flex-grow">
                 <h3 th:text="${topic.title}" class="text-lg font-semibold text-gray-800"></h3>
-                <p th:text="${topic.description}" class="text-gray-600 mt-2 line-clamp-3"></p>
+                <!-- Descripción -->
+                <p th:utext="${topic.description}"
+                   class="text-gray-700 leading-relaxed text-lg whitespace-pre-line"></p>
 
                 <div class="mt-auto pt-4">
                     <a th:href="@{/topics/{id}/subtopics(id=${topic.id})}"

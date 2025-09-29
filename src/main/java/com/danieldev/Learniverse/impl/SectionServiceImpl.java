@@ -10,8 +10,10 @@ import com.danieldev.Learniverse.repository.SectionRepository;
 import com.danieldev.Learniverse.service.SectionService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
 import java.util.List;
 
 @Service
@@ -42,13 +44,15 @@ public class SectionServiceImpl implements SectionService {
 
     @Override
     public List<SectionResponse> findAll() {
-        List<Section> sections = sectionRepository.findAll();
+        List<Section> sections = sectionRepository.findAll(Sort.by(Sort.Direction.ASC, "orderIndex"));
 
-        if(sections.isEmpty()) {
+        if (sections.isEmpty()) {
             throw new ResourceNotFoundException("No hay secciones en la base de datos. sectionImpl/findAll.");
         }
 
-        return sections.stream().map(section -> mapper.map(section, SectionResponse.class)).toList();
+        return sections.stream()
+                .map(section -> mapper.map(section, SectionResponse.class))
+                .toList();
     }
 
     @Override
@@ -72,6 +76,8 @@ public class SectionServiceImpl implements SectionService {
         existingSection.setCode(request.getCode());
         existingSection.setContent(content);
         existingSection.setLanguage(request.getLanguage());
+        existingSection.setUrlVideo(request.getUrlVideo());
+        existingSection.setUrlImage(request.getUrlImage());
 
         Section updateSection = sectionRepository.save(existingSection);
         return mapper.map(updateSection, SectionResponse.class);
@@ -87,17 +93,21 @@ public class SectionServiceImpl implements SectionService {
 
     @Override
     public List<SectionResponse> findByContentId(Long contentId) {
-        contentRepository.findById(contentId).
-                orElseThrow (() -> new ResourceNotFoundException("Contenido no encontrado. SectionImpl/delete"));
+        contentRepository.findById(contentId)
+                .orElseThrow(() -> new ResourceNotFoundException("Contenido no encontrado. SectionImpl/delete"));
 
         List<Section> sections = sectionRepository.findByContentId(contentId);
 
-        if(sections.isEmpty()) {
-            throw new ResourceNotFoundException("No hay secciones en el id de contenido. SectionImpl/findByContentId. ");
+        if (sections.isEmpty()) {
+            throw new ResourceNotFoundException("No hay secciones en el id de contenido. SectionImpl/findByContentId.");
         }
-        return sections.stream().
-                map(section -> mapper.map(section, SectionResponse.class)).toList();
+
+        return sections.stream()
+                .sorted(Comparator.comparingInt(Section::getOrderIndex)) // 👈 ordena por orderIndex ASC
+                .map(section -> mapper.map(section, SectionResponse.class))
+                .toList();
     }
+
 
     @Override
     public SectionResponse findPrevious(Long currentSectionId) {

@@ -17,7 +17,9 @@
     <article class="bg-white rounded-2xl shadow-md p-8 hover:shadow-xl transition duration-300 space-y-6">
 
         <!-- Descripción -->
-        <p th:text="${section.description}" class="text-gray-700 leading-relaxed text-lg"></p>
+        <p th:utext="${section.description}"
+           class="text-gray-700 leading-relaxed text-lg whitespace-pre-line"></p>
+
 
         <!-- Código -->
         <div th:if="${section.code != null}">

@@ -31,8 +31,10 @@
         <!-- Campo Descripción -->
         <div>
             <label for="description" class="block font-medium text-gray-700">Descripción</label>
-            <textarea id="description" th:field="*{description}" rows="4" required
-                      class="mt-1 block w-full border border-gray-300 rounded-md p-3 focus:border-indigo-500 focus:ring focus:ring-indigo-200 resize-y"></textarea>
+            <textarea id="description" th:field="*{description}" rows="8" required
+                      class="mt-1 block w-full border border-gray-300 rounded-md p-4
+                   focus:border-indigo-500 focus:ring focus:ring-indigo-200
+                   resize-y min-h-[150px]"></textarea>
             <p class="text-red-500 text-sm mt-1"
                th:if="${#fields.hasErrors('description')}"
                th:errors="*{description}"></p>

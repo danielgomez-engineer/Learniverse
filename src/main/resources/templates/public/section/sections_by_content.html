@@ -20,8 +20,8 @@
             class="text-2xl font-bold text-gray-900"></h2>
 
         <!-- Descripción -->
-        <p th:text="${section.description}"
-           class="text-gray-700 leading-relaxed"></p>
+        <p th:utext="${section.description}"
+           class="text-gray-700 leading-relaxed text-lg whitespace-pre-line"></p>
 
         <!-- Ejemplo de código -->
         <div th:if="${section.code != null}">

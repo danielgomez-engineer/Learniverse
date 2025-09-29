@@ -23,6 +23,7 @@ public class SectionRequest {
     private String code;
     private Language language;
     private String urlVideo;
+    private String urlImage;
     private Long idContent;
 
 }

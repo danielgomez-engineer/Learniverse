@@ -30,7 +30,9 @@
              class="bg-white rounded-xl shadow-md p-5 flex flex-col justify-between hover:shadow-lg hover:scale-[1.02] transition">
             <div>
                 <h3 class="text-xl font-semibold text-gray-900" th:text="${topic.title}"></h3>
-                <p class="text-gray-600 mt-2 line-clamp-3" th:text="${topic.description}"></p>
+                <!-- Descripción -->
+                <p th:utext="${topic.description}"
+                   class="text-gray-700 leading-relaxed text-lg whitespace-pre-line"></p>
             </div>
             <div class="flex gap-2 mt-4">
                 <a th:href="@{'/topics/edit/' + ${topic.id}}"

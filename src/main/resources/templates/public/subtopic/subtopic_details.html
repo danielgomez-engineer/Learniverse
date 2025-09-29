@@ -24,7 +24,9 @@
 
             <div class="space-y-2">
                 <h3 th:text="${subtopic.title}" class="text-xl font-semibold text-gray-800"></h3>
-                <p th:text="${subtopic.description}" class="text-gray-600 line-clamp-3"></p>
+                <!-- Descripción -->
+                <p th:utext="${subtopic.description}"
+                   class="text-gray-700 leading-relaxed text-lg whitespace-pre-line"></p>
             </div>
 
             <div class="mt-auto pt-4">

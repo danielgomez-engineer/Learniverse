@@ -1,30 +1,12 @@
-server:
-  port: 8080
-
 spring:
   datasource:
-    url: ${SPRING_DATASOURCE_URL}
-    username: ${SPRING_DATASOURCE_USERNAME}
-    password: ${SPRING_DATASOURCE_PASSWORD}
+    url: jdbc:postgresql://dpg-d35ft0u3jp1c73ckb3f0-a.oregon-postgres.render.com:5432/learniverse_db_yat0
+    username: learniverse_db_yat0_user
+    password: S4sPciZAgSAt6U50FAW4W9WW4njz51fb
     driver-class-name: org.postgresql.Driver
-    hikari:
-      connection-init-sql: "SET NAMES 'UTF8'"
-      maximum-pool-size: 5               # Render DB gratis = pocas conexiones
-      minimum-idle: 2
-      idle-timeout: 10000                # 10s → libera rápido las conexiones inactivas
-      max-lifetime: 300000               # 5min → recicla conexiones viejas
-      connection-timeout: 30000          # 30s espera antes de dar timeout
-      leak-detection-threshold: 20000    # Detectar fugas (>20s loggea warning)
 
   jpa:
     hibernate:
-      ddl-auto: ${SPRING_JPA_HIBERNATE_DDL_AUTO:update}
+      ddl-auto: update
     show-sql: true
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.PostgreSQLDialect
-        jdbc:
-          time_zone: UTC
-
-  thymeleaf:
-    cache: false
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
