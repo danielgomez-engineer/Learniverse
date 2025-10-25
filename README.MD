@@ -78,15 +78,22 @@ cd Learniverse
 ```
 ---
 
-2️⃣ Configurar Base de Datos (MySQL)
+2️⃣ Configurar Base de Datos (PostgreSQL)
 
 Edita el archivo application.yml con tus credenciales locales:
 ```bash
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/learniverse?allowPublicKeyRetrieval=true&useSSL=false
-    username: root
-    password: admin
+    url: jdbc:postgresql://localhost:5432/learniverse_db
+    username: postgres
+    password: tu_contraseña
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
 ```
 
 ---
@@ -103,6 +110,7 @@ El servidor estará disponible en:
 👨‍💻 Autor
 
 Desarrollado por: Daniel Felipe Gómez Ferreira
+
 💼 [LinkedIn](https://www.linkedin.com/in/daniel-felipe-g%C3%B3mez-ferreira-050062276/)
 
 📧 [danielf23.dev@gmail.com](danielf23.dev@gmail.com)
