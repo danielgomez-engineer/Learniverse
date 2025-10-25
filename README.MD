@@ -65,7 +65,7 @@ Mi enfoque técnico se centra en un desarrollo **Java Full Stack moderno**, con 
 ## 🖥️ Demostración en Producción
 
 Puedes explorar la versión desplegada del proyecto aquí:  
-🔗 **Demo URL:** [https://learniverse.onrender.com](https://learniverse.onrender.com)
+🔗 **Demo URL:** [https://learniverse-drw7.onrender.com/](https://learniverse-drw7.onrender.com/)
 
 ---
 
