@@ -75,3 +75,41 @@ Puedes explorar la versión desplegada del proyecto aquí:
 ```bash
 git clone https://github.com/danielgomez-engineer/Learniverse.git
 cd Learniverse
+```
+---
+
+2️⃣ Configurar Base de Datos (MySQL)
+
+Edita el archivo application.yml con tus credenciales locales:
+```bash
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/learniverse?allowPublicKeyRetrieval=true&useSSL=false
+    username: root
+    password: admin
+```
+
+---
+
+3️⃣ Ejecutar con Gradle
+```bash
+./gradlew bootRun
+```
+El servidor estará disponible en:
+👉 http://localhost:8080
+
+---
+
+👨‍💻 Autor
+
+Desarrollado por: Daniel Felipe Gómez Ferreira
+💼 [LinkedIn](https://www.linkedin.com/in/daniel-felipe-g%C3%B3mez-ferreira-050062276/)
+
+📧 [danielf23.dev@gmail.com](danielf23.dev@gmail.com)
+
+🌐 Portafolio (en construcción)
+
+---
+
+🧠 Este proyecto está bajo la Licencia MIT.
+Cada mejora de Learniverse representa un paso más en mi camino hacia la excelencia técnica y la construcción de software educativo de impacto.
